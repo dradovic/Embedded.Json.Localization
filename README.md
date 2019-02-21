@@ -3,8 +3,8 @@
 ## Description
 
 This project allows you to use JSON files for .NET Core Localization instead of resx files.
-Special feature:
-1. Works with multiple projects/assemblies.
+Special feature: works with *multiple* projects/assemblies (i.e. the resources can stay in
+the project where they belong).
 
 ## Configuration
 
