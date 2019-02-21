@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Resources.Localization.Json\Resources.Localization.Json.csproj" />
+    <ProjectReference Include="..\..\src\Embedded.Json.Localization\Embedded.Json.Localization.csproj" />
   </ItemGroup>
 
   <ItemGroup>

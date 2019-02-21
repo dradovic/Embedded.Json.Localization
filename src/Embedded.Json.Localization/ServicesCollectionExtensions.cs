@@ -1,7 +1,7 @@
 using System;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Localization;
-using Resources.Localization.Json;
+using Embedded.Json.Localization;
 
 namespace Microsoft.Extensions.DependencyInjection
 {

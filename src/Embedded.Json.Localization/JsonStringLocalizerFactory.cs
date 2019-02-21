@@ -4,7 +4,7 @@ using System.Reflection;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 
-namespace Resources.Localization.Json
+namespace Embedded.Json.Localization
 {
     public class JsonStringLocalizerFactory : IStringLocalizerFactory
     {

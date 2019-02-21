@@ -8,7 +8,7 @@ using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
-namespace Resources.Localization.Json
+namespace Embedded.Json.Localization
 {
     public class JsonStringLocalizer : IStringLocalizer
     {

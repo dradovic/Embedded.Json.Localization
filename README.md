@@ -1,1 +1,1 @@
-Resources.Localization.Json
+Embedded.Json.Localization
