@@ -23,7 +23,16 @@ namespace Embedded.Json.Localization
 
         private static Dictionary<string, string> ReadResources(string resourceName, Assembly resourceAssembly, ILogger<JsonStringLocalizer> logger)
         {
-            var satelliteAssembly = resourceAssembly.GetSatelliteAssembly(CultureInfo.CurrentUICulture); // FIXME: da, check cases where the resource would be in the main assemlby
+            Assembly satelliteAssembly;
+            try
+            {
+                satelliteAssembly = resourceAssembly.GetSatelliteAssembly(CultureInfo.CurrentUICulture); // FIXME: da, check cases where the resource would be in the main assemlby
+            }
+            catch (FileNotFoundException x)
+            {
+                logger.LogWarning(x, x.Message);
+                return new Dictionary<string, string>();
+            }
             var stream = satelliteAssembly.GetManifestResourceStream(resourceName);
             if (stream == null)
             {
