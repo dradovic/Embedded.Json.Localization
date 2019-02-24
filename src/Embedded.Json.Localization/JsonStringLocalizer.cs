@@ -12,14 +12,16 @@ namespace Embedded.Json.Localization
 {
     public class JsonStringLocalizer : IStringLocalizer
     {
-        private readonly Dictionary<string, string> _resources;
-        private readonly Dictionary<string, string> _fallbackResources;
+        private readonly Lazy<Dictionary<string, string>> _resources;
+        private readonly Lazy<Dictionary<string, string>> _fallbackResources;
         private readonly ILogger<JsonStringLocalizer> _logger;
 
         public JsonStringLocalizer(string resourceName, Assembly resourceAssembly, ILogger<JsonStringLocalizer> logger)
         {
-            _resources = ReadResources(resourceName, resourceAssembly, CultureInfo.CurrentUICulture, logger);
-            _fallbackResources = ReadResources(resourceName, resourceAssembly, CultureInfo.CurrentUICulture.Parent, logger);
+            _resources = new Lazy<Dictionary<string, string>>(
+                () => ReadResources(resourceName, resourceAssembly, CultureInfo.CurrentUICulture, logger));
+            _fallbackResources = new Lazy<Dictionary<string, string>>(
+                () => ReadResources(resourceName, resourceAssembly, CultureInfo.CurrentUICulture.Parent, logger));
             _logger = logger;
         }
 
@@ -77,13 +79,13 @@ namespace Embedded.Json.Localization
 
         private bool TryGetResource(string name, out string value)
         {
-            return _resources.TryGetValue(name, out value) ||
-                _fallbackResources.TryGetValue(name, out value);
+            return _resources.Value.TryGetValue(name, out value) ||
+                _fallbackResources.Value.TryGetValue(name, out value);
         }
 
         public IEnumerable<LocalizedString> GetAllStrings(bool includeParentCultures)
         {
-            return _resources.Select(r => new LocalizedString(r.Key, r.Value));
+            return _resources.Value.Select(r => new LocalizedString(r.Key, r.Value));
         }
 
         public IStringLocalizer WithCulture(CultureInfo culture)
