@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="**/*.de-CH.json" />
+    <EmbeddedResource Include="**/*.de.json" />
   </ItemGroup>
 
 </Project>

@@ -13,24 +13,26 @@ namespace Embedded.Json.Localization
     public class JsonStringLocalizer : IStringLocalizer
     {
         private readonly Dictionary<string, string> _resources;
+        private readonly Dictionary<string, string> _fallbackResources;
         private readonly ILogger<JsonStringLocalizer> _logger;
 
         public JsonStringLocalizer(string resourceName, Assembly resourceAssembly, ILogger<JsonStringLocalizer> logger)
         {
-            _resources = ReadResources(resourceName, resourceAssembly, logger);
+            _resources = ReadResources(resourceName, resourceAssembly, CultureInfo.CurrentUICulture, logger);
+            _fallbackResources = ReadResources(resourceName, resourceAssembly, CultureInfo.CurrentUICulture.Parent, logger);
             _logger = logger;
         }
 
-        private static Dictionary<string, string> ReadResources(string resourceName, Assembly resourceAssembly, ILogger<JsonStringLocalizer> logger)
+        private static Dictionary<string, string> ReadResources(string resourceName, Assembly resourceAssembly, CultureInfo cultureInfo, ILogger<JsonStringLocalizer> logger)
         {
             Assembly satelliteAssembly;
             try
             {
-                satelliteAssembly = resourceAssembly.GetSatelliteAssembly(CultureInfo.CurrentUICulture); // FIXME: da, check cases where the resource would be in the main assemlby
+                satelliteAssembly = resourceAssembly.GetSatelliteAssembly(cultureInfo);
             }
             catch (FileNotFoundException x)
             {
-                logger.LogWarning(x, x.Message);
+                logger.LogInformation(x, x.Message);
                 return new Dictionary<string, string>();
             }
             var stream = satelliteAssembly.GetManifestResourceStream(resourceName);
@@ -52,7 +54,7 @@ namespace Embedded.Json.Localization
             get
             {
                 if (name == null) throw new ArgumentNullException(nameof(name));
-                if (_resources.TryGetValue(name, out string value))
+                if (TryGetResource(name, out string value))
                 {
                     return new LocalizedString(name, value, resourceNotFound: false);
                 }
@@ -65,12 +67,18 @@ namespace Embedded.Json.Localization
             get
             {
                 if (name == null) throw new ArgumentNullException(nameof(name));
-                if (_resources.TryGetValue(name, out string value))
+                if (TryGetResource(name, out string value))
                 {
                     return new LocalizedString(name, string.Format(value, arguments), resourceNotFound: false);
                 }
                 return new LocalizedString(name, string.Format(name, arguments), resourceNotFound: true);
             }
+        }
+
+        private bool TryGetResource(string name, out string value)
+        {
+            return _resources.TryGetValue(name, out value) ||
+                _fallbackResources.TryGetValue(name, out value);
         }
 
         public IEnumerable<LocalizedString> GetAllStrings(bool includeParentCultures)
