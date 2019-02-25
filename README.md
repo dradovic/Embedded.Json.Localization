@@ -20,7 +20,12 @@ it is also searched for in 'de' resources).
 
 2. In Startup.cs:
 ```cs
+public void ConfigureServices(...) 
+{
+    ...
     services.AddJsonLocalization();
+    ...
+}
 ```
 
 3. Embed the json in the corresponding project files (csproj). For example:
