@@ -15,7 +15,7 @@ it is also searched for in 'de' resources).
 
 1. Add the package reference:
 
-NuGet Package: [![NuGet](https://img.shields.io/nuget/v/Embedded.Json.Localization.svg)](https://www.nuget.org/packages/Embedded.Json.Localization)
+[![NuGet](https://img.shields.io/nuget/v/Embedded.Json.Localization.svg)](https://www.nuget.org/packages/Embedded.Json.Localization)
 
 2. In Startup.cs:
 ```cs
