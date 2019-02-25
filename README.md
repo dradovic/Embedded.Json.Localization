@@ -14,9 +14,8 @@ it is also searched for in 'de' resources).
 ## Configuration
 
 1. Add the package reference:
-```bash
-    dotnet add package Embedded.Json.Localization --version x.x.x
-```
+
+NuGet Package: [![NuGet](https://img.shields.io/nuget/v/Embedded.Json.Localization.svg)](https://www.nuget.org/packages/Embedded.Json.Localization)
 
 2. In Startup.cs:
 ```cs
@@ -39,6 +38,3 @@ public void ConfigureServices(...)
 
 You can find a fully working sample in the source code. Note that the cookie consent has been localized (to
 show an instance of view localization) and the header messages of the About and Contact screens (to have an example of localization happening in a controller inlcuding fallback to parent culture).
-
-
-NuGet Package: [![NuGet](https://img.shields.io/nuget/v/Embedded.Json.Localization.svg)](https://www.nuget.org/packages/Embedded.Json.Localization/1.0.0)
