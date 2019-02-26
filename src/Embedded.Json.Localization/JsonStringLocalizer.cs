@@ -18,14 +18,15 @@ namespace Embedded.Json.Localization
 
         public JsonStringLocalizer(string resourceName, Assembly resourceAssembly, ILogger<JsonStringLocalizer> logger)
         {
+            CultureInfo cultureInfo = CultureInfo.CurrentUICulture;
             _resources = new Lazy<Dictionary<string, string>>(
-                () => ReadResources(resourceName, resourceAssembly, CultureInfo.CurrentUICulture, logger));
+                () => ReadResources(resourceName, resourceAssembly, cultureInfo, logger, isFallback: false));
             _fallbackResources = new Lazy<Dictionary<string, string>>(
-                () => ReadResources(resourceName, resourceAssembly, CultureInfo.CurrentUICulture.Parent, logger));
+                () => ReadResources(resourceName, resourceAssembly, cultureInfo.Parent, logger, isFallback: true));
             _logger = logger;
         }
 
-        private static Dictionary<string, string> ReadResources(string resourceName, Assembly resourceAssembly, CultureInfo cultureInfo, ILogger<JsonStringLocalizer> logger)
+        private static Dictionary<string, string> ReadResources(string resourceName, Assembly resourceAssembly, CultureInfo cultureInfo, ILogger<JsonStringLocalizer> logger, bool isFallback)
         {
             Assembly satelliteAssembly;
             try
@@ -34,13 +35,13 @@ namespace Embedded.Json.Localization
             }
             catch (FileNotFoundException x)
             {
-                logger.LogInformation(x, x.Message);
+                logger.LogInformation($"Could not find satellite assembly for {(isFallback ? "fallback " : "")}'{cultureInfo.Name}': {x.Message}");
                 return new Dictionary<string, string>();
             }
             var stream = satelliteAssembly.GetManifestResourceStream(resourceName);
             if (stream == null)
             {
-                logger.LogInformation($"Resource '{resourceName}' not found. Embedded in assembly?");
+                logger.LogInformation($"Resource '{resourceName}' not found for {(isFallback ? "fallback " : "")}'{cultureInfo.Name}'.");
                 return new Dictionary<string, string>();
             }
             string json;
