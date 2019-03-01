@@ -13,6 +13,9 @@ it is also searched for in 'de' resources).
 
 ## Configuration
 
+The following are the required steps to activate the embedded JSON localization. For all
+other information consider the official [Globalization and localization in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/localization?view=aspnetcore-2.2) docs.
+
 1. Add the package reference:
 
 [![NuGet](https://img.shields.io/nuget/v/Embedded.Json.Localization.svg)](https://www.nuget.org/packages/Embedded.Json.Localization)
