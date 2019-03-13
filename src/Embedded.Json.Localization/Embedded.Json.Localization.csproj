@@ -8,8 +8,7 @@
     <PackageTags>localization;json;resource;embed</PackageTags>
     <Description>.NET Core localization using embedded JSON resources</Description>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
-    <PackageReleaseNotes>1.0.1 - improved logging; lessened version of dependency on Newtonsoft.Json
-    </PackageReleaseNotes>
+    <PackageReleaseNotes>1.0.2 - BUG FIX: cache per culture</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

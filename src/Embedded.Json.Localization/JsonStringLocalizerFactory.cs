@@ -21,27 +21,27 @@ namespace Embedded.Json.Localization
         public IStringLocalizer Create(Type resourceSource)
         {
             var resourceType = resourceSource.GetTypeInfo();
-            var culture = CultureInfo.CurrentUICulture;
+            var cultureInfo = CultureInfo.CurrentUICulture;
             var resourceName = $"{resourceType.FullName}.json";
-            return GetCachedLocalizer(resourceName, resourceType.Assembly);
+            return GetCachedLocalizer(resourceName, resourceType.Assembly, cultureInfo);
         }
 
         public IStringLocalizer Create(string baseName, string location)
         {
-            var culture = CultureInfo.CurrentUICulture;
+            var cultureInfo = CultureInfo.CurrentUICulture;
             var resourceName = $"{baseName}.json";
-            return GetCachedLocalizer(resourceName, Assembly.GetEntryAssembly());
+            return GetCachedLocalizer(resourceName, Assembly.GetEntryAssembly(), cultureInfo);
         }
 
-        private IStringLocalizer GetCachedLocalizer(string resourceName, Assembly assembly)
+        private IStringLocalizer GetCachedLocalizer(string resourceName, Assembly assembly, CultureInfo cultureInfo)
         {
-            string cacheKey = GetCacheKey(resourceName, assembly);
-            return _cache.GetOrAdd(cacheKey, new JsonStringLocalizer(resourceName, assembly, _loggerFactory.CreateLogger<JsonStringLocalizer>()));
+            string cacheKey = GetCacheKey(resourceName, assembly, cultureInfo);
+            return _cache.GetOrAdd(cacheKey, new JsonStringLocalizer(resourceName, assembly, cultureInfo, _loggerFactory.CreateLogger<JsonStringLocalizer>()));
         }
 
-        private string GetCacheKey(string resourceName, Assembly assembly)
+        private string GetCacheKey(string resourceName, Assembly assembly, CultureInfo cultureInfo)
         {
-            return resourceName + ';' + assembly.FullName;
+            return resourceName + ';' + assembly.FullName + ';' + cultureInfo.Name;
         }
     }
 }

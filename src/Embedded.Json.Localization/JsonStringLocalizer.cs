@@ -16,9 +16,8 @@ namespace Embedded.Json.Localization
         private readonly Lazy<Dictionary<string, string>> _fallbackResources;
         private readonly ILogger<JsonStringLocalizer> _logger;
 
-        public JsonStringLocalizer(string resourceName, Assembly resourceAssembly, ILogger<JsonStringLocalizer> logger)
+        public JsonStringLocalizer(string resourceName, Assembly resourceAssembly, CultureInfo cultureInfo, ILogger<JsonStringLocalizer> logger)
         {
-            CultureInfo cultureInfo = CultureInfo.CurrentUICulture;
             _resources = new Lazy<Dictionary<string, string>>(
                 () => ReadResources(resourceName, resourceAssembly, cultureInfo, logger, isFallback: false));
             _fallbackResources = new Lazy<Dictionary<string, string>>(
