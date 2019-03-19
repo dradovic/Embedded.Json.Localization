@@ -90,7 +90,7 @@ namespace Embedded.Json.Localization
 
         public IStringLocalizer WithCulture(CultureInfo culture)
         {
-            throw new System.NotSupportedException();
+            throw new System.NotSupportedException("Obsolete API. See: https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.localization.istringlocalizer.withculture");
         }
     }
 }
