@@ -12,7 +12,7 @@ namespace Microsoft.Extensions.DependencyInjection
             if (services == null) throw new ArgumentNullException(nameof(services));
 
             services.TryAddSingleton<IStringLocalizerFactory, JsonStringLocalizerFactory>();
-            services.TryAddTransient(typeof(IStringLocalizer<>), typeof(StringLocalizer<>));
+            services.TryAddSingleton(typeof(IStringLocalizer<>), typeof(StringLocalizer<>));
 
             return services;
         }
