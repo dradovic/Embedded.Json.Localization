@@ -3,12 +3,12 @@
   <PropertyGroup>
     <Title>Embedded JSON Localization</Title>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>1.1.1</Version>
+    <Version>1.1.2</Version>
     <PackageProjectUrl>https://github.com/dradovic/Embedded.Json.Localization</PackageProjectUrl>
     <PackageTags>localization;json;resource;embed</PackageTags>
     <Description>.NET Core localization using embedded JSON resources</Description>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
-    <PackageReleaseNotes>1.1.1 - reverted change for 1.1.0 (= functionally equivalent with 1.0.2)</PackageReleaseNotes>
+    <PackageReleaseNotes>1.1.2 (bumped Newtonsoft.Json to 13.0.1 as a security fix)</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
