@@ -14,7 +14,6 @@ namespace Embedded.Json.Localization
     {
         private readonly Lazy<Dictionary<string, string>> _resources;
         private readonly Lazy<Dictionary<string, string>> _fallbackResources;
-        private readonly ILogger<JsonStringLocalizer> _logger;
 
         public JsonStringLocalizer(string resourceName, Assembly resourceAssembly, CultureInfo cultureInfo, ILogger<JsonStringLocalizer> logger)
         {
@@ -22,7 +21,6 @@ namespace Embedded.Json.Localization
                 () => ReadResources(resourceName, resourceAssembly, cultureInfo, logger, isFallback: false));
             _fallbackResources = new Lazy<Dictionary<string, string>>(
                 () => ReadResources(resourceName, resourceAssembly, cultureInfo.Parent, logger, isFallback: true));
-            _logger = logger;
         }
 
         private static Dictionary<string, string> ReadResources(string resourceName, Assembly resourceAssembly, CultureInfo cultureInfo, ILogger<JsonStringLocalizer> logger, bool isFallback)
