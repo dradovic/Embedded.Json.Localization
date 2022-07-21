@@ -1,0 +1,8 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using MyLocalizedMvcWebApp.Controllers
+@inject IHtmlLocalizer<HomeController> Localizer
+
+<div class="text-center">
+    <h1 class="display-4">@Localizer["Welcome"]</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
