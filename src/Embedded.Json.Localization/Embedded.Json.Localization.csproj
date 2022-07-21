@@ -7,7 +7,7 @@
     <IsPackable>true</IsPackable>
     <PackageProjectUrl>https://github.com/dradovic/Embedded.Json.Localization</PackageProjectUrl>
     <PackageTags>localization;json;resource;embed;localizer</PackageTags>
-    <Description>.NET Core localization using embedded JSON resources</Description>
+    <Description>.NET Core localization using embedded JSON resources interpolated</Description>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageReleaseNotes>1.1.2 (bumped Newtonsoft.Json to 13.0.1 as a security fix)</PackageReleaseNotes>
   </PropertyGroup>
