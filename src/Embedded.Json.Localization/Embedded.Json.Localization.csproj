@@ -5,13 +5,13 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>10.0</LangVersion>
     <Nullable>enable</Nullable>
-    <Version>1.1.3</Version>
+    <Version>2.0.0</Version>
     <IsPackable>true</IsPackable>
     <PackageProjectUrl>https://github.com/dradovic/Embedded.Json.Localization</PackageProjectUrl>
     <PackageTags>localization;json;resource;embed;localizer</PackageTags>
     <Description>.NET Core localization using embedded JSON resources interpolated</Description>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
-    <PackageReleaseNotes>1.1.3 (enabled NRT)</PackageReleaseNotes>
+    <PackageReleaseNotes>2.0.0 (removed Newtonsoft dependency)</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -25,7 +25,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
     <PackageReference Include="Microsoft.Extensions.Localization" Version="2.1.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="System.Text.Json" Version="7.0.3" />
   </ItemGroup>
 
   <ItemGroup>

@@ -4,26 +4,26 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text.Json;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 
 namespace Embedded.Json.Localization
 {
     public class JsonStringLocalizer : IStringLocalizer
     {
-        private readonly Lazy<Dictionary<string, string>> _resources;
-        private readonly Lazy<Dictionary<string, string>> _fallbackResources;
+        private readonly Lazy<IDictionary<string, string>> _resources;
+        private readonly Lazy<IDictionary<string, string>> _fallbackResources;
 
         public JsonStringLocalizer(string resourceName, Assembly resourceAssembly, CultureInfo cultureInfo, ILogger<JsonStringLocalizer> logger)
         {
-            _resources = new Lazy<Dictionary<string, string>>(
+            _resources = new Lazy<IDictionary<string, string>>(
                 () => ReadResources(resourceName, resourceAssembly, cultureInfo, logger, isFallback: false));
-            _fallbackResources = new Lazy<Dictionary<string, string>>(
+            _fallbackResources = new Lazy<IDictionary<string, string>>(
                 () => ReadResources(resourceName, resourceAssembly, cultureInfo.Parent, logger, isFallback: true));
         }
 
-        private static Dictionary<string, string> ReadResources(string resourceName, Assembly resourceAssembly, CultureInfo cultureInfo, ILogger<JsonStringLocalizer> logger, bool isFallback)
+        private static IDictionary<string, string> ReadResources(string resourceName, Assembly resourceAssembly, CultureInfo cultureInfo, ILogger<JsonStringLocalizer> logger, bool isFallback)
         {
             Assembly satelliteAssembly;
             try
@@ -46,7 +46,7 @@ namespace Embedded.Json.Localization
             {
                 json = reader.ReadToEnd();
             }
-            return JsonConvert.DeserializeObject<Dictionary<string, string>>(json) ?? throw new InvalidOperationException($"Failed to parse JSON: '{json}'");
+            return JsonSerializer.Deserialize<IDictionary<string, string>>(json) ?? throw new InvalidOperationException($"Failed to parse JSON: '{json}'");
         }
 
         public LocalizedString this[string name]
@@ -88,7 +88,7 @@ namespace Embedded.Json.Localization
 
         public IStringLocalizer WithCulture(CultureInfo culture)
         {
-            throw new System.NotSupportedException("Obsolete API. See: https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.localization.istringlocalizer.withculture");
+            throw new NotSupportedException("Obsolete API. See: https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.localization.istringlocalizer.withculture");
         }
     }
 }
