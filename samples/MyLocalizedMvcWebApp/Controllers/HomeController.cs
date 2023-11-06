@@ -7,12 +7,10 @@ namespace MyLocalizedMvcWebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private readonly IStringLocalizer<HomeController> _localizer;
 
-        public HomeController(ILogger<HomeController> logger, IStringLocalizer<HomeController> localizer)
+        public HomeController(IStringLocalizer<HomeController> localizer)
         {
-            _logger = logger;
             _localizer = localizer;
         }
 
