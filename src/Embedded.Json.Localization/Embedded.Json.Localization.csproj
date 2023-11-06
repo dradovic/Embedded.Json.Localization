@@ -11,10 +11,8 @@
     <PackageTags>localization;json;resource;embed;localizer</PackageTags>
     <Description>.NET Core localization using embedded JSON resources interpolated</Description>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
-    <PackageReleaseNotes>
-      2.0.0 removed Newtonsoft dependency
-      2.0.1 support comment in resource (JSON) files
-    </PackageReleaseNotes>
+    <PackageReleaseNotes>2.0.0 removed Newtonsoft dependency
+2.0.1 support comments in resource (JSON) files</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
