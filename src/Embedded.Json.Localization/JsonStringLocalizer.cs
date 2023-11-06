@@ -46,7 +46,10 @@ namespace Embedded.Json.Localization
             {
                 json = reader.ReadToEnd();
             }
-            return JsonSerializer.Deserialize<IDictionary<string, string>>(json) ?? throw new InvalidOperationException($"Failed to parse JSON: '{json}'");
+            return JsonSerializer.Deserialize<IDictionary<string, string>>(json, new JsonSerializerOptions
+            {
+                ReadCommentHandling = JsonCommentHandling.Skip,
+            }) ?? throw new InvalidOperationException($"Failed to parse JSON: '{json}'");
         }
 
         public LocalizedString this[string name]

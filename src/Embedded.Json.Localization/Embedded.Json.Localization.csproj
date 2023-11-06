@@ -5,13 +5,16 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>10.0</LangVersion>
     <Nullable>enable</Nullable>
-    <Version>2.0.0</Version>
+    <Version>2.0.1</Version>
     <IsPackable>true</IsPackable>
     <PackageProjectUrl>https://github.com/dradovic/Embedded.Json.Localization</PackageProjectUrl>
     <PackageTags>localization;json;resource;embed;localizer</PackageTags>
     <Description>.NET Core localization using embedded JSON resources interpolated</Description>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
-    <PackageReleaseNotes>2.0.0 (removed Newtonsoft dependency)</PackageReleaseNotes>
+    <PackageReleaseNotes>
+      2.0.0 removed Newtonsoft dependency
+      2.0.1 support comment in resource (JSON) files
+    </PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
