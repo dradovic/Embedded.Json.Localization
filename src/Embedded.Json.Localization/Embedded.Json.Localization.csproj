@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <Title>Embedded JSON Localization</Title>
@@ -12,7 +12,7 @@
     <Description>.NET Core localization using embedded JSON resources interpolated</Description>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageReleaseNotes>2.0.0 removed Newtonsoft dependency
-2.0.1 support comments in resource (JSON) files</PackageReleaseNotes>
+2.0.2 upgraded to latest System.Text.Json</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -26,7 +26,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.13" />
-    <PackageReference Include="System.Text.Json" Version="7.0.3" />
+    <PackageReference Include="System.Text.Json" Version="8.0.4" />
   </ItemGroup>
 
   <ItemGroup>
