@@ -5,7 +5,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>10.0</LangVersion>
     <Nullable>enable</Nullable>
-    <Version>2.0.2</Version>
+    <Version>2.0.3</Version>
     <IsPackable>true</IsPackable>
     <PackageProjectUrl>https://github.com/dradovic/Embedded.Json.Localization</PackageProjectUrl>
     <PackageTags>localization;json;resource;embed;localizer</PackageTags>
@@ -13,7 +13,8 @@
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageReleaseNotes>2.0.0 removed Newtonsoft dependency
 2.0.1 support comments in resource (JSON) files
-2.0.2 upgraded to latest System.Text.Json</PackageReleaseNotes>
+2.0.2 upgraded to latest System.Text.Json
+2.0.3 upgraded to latest System.Text.Json</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
